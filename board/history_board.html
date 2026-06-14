@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Saira+Stencil+One&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+:root{
+  --paper:#ECE3CD; --paper2:#E1D5B8; --orange:#BF4F1B; --orange-deep:#8F360E;
+  --olive:#4C4B37; --olive-tab:#3D3C2C; --ink:#1B1712; --navy:#1A2A44;
+  --sand:#D8C9A6;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+@page{ size:36in 24in; margin:0; }
+html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body{ font-family:'Source Sans 3',sans-serif; color:var(--ink); }
+.board{ width:36in; height:24in; background:var(--paper); position:relative; display:grid;
+  grid-template-columns:18.8in 17.2in; grid-template-rows:3.8in 1fr 2.8in; overflow:hidden; }
+.spine{ position:absolute; left:0; top:0; bottom:0; width:.28in; background:var(--orange); z-index:5; }
+.gutter{ position:absolute; top:3.8in; bottom:2.8in; left:18.8in; width:0; border-left:1px dashed #B7AC8E; }
+/* MASTHEAD */
+.masthead{ grid-column:1 / -1; display:grid; grid-template-columns:1fr 4.2in; align-items:center;
+  padding:.55in .85in 0 1.05in; border-bottom:7px solid var(--ink); position:relative; }
+.masthead::after{ content:""; position:absolute; left:1.05in; right:.85in; bottom:-.16in; height:3px; background:var(--orange); }
+.mh-left .eyebrow{ font-family:'Saira Stencil One',sans-serif; color:var(--orange-deep); font-size:23px; letter-spacing:.24em; line-height:1; margin-bottom:.16in; }
+.mh-left h1{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:210px; line-height:.78; letter-spacing:-.01em; text-transform:uppercase; }
+.mh-left h1 .b{ color:var(--orange); }
+.mh-left .sub{ font-size:29px; font-weight:600; color:var(--olive); margin-top:.26in; }
+.qr-card{ justify-self:end; display:grid; grid-template-columns:auto 1.5in; align-items:center; gap:.22in; background:var(--ink); padding:.24in .28in; }
+.qr-card img{ width:1.5in; height:1.5in; display:block; background:#fff; padding:.06in; order:2; }
+.qr-card .qr-txt{ order:1; text-align:right; }
+.qr-card .qr-txt .k{ font-family:'Saira Stencil One',sans-serif; color:var(--orange); font-size:15px; letter-spacing:.1em; line-height:1.3; }
+.qr-card .qr-txt .big{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; color:var(--paper); font-size:36px; line-height:.92; text-transform:uppercase; margin-top:.05in; }
+.qr-card .qr-txt .sm{ color:var(--sand); font-size:15px; margin-top:.08in; }
+/* LEFT */
+.story{ padding:.55in .85in .5in 1.05in; display:flex; flex-direction:column; justify-content:space-between; }
+.sections{ display:grid; grid-template-columns:1fr 1fr; gap:.5in .62in; }
+.sec .num{ font-family:'Saira Stencil One',sans-serif; font-size:15px; color:var(--orange-deep); letter-spacing:.12em; }
+.sec h2{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:45px; line-height:.95; text-transform:uppercase; color:var(--navy); margin:.05in 0 .1in; }
+.sec p{ font-size:24px; line-height:1.36; }
+.pullquote{ border-top:5px solid var(--orange); padding-top:.26in; margin-bottom:.34in; }
+.pullquote p{ font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:50px; line-height:1.02; color:var(--navy); text-transform:uppercase; }
+.pullquote p b{ color:var(--orange); }
+.war-open{ display:grid; grid-template-columns:1fr 1fr; gap:.5in .62in; align-items:start; }
+.warphoto img{ width:100%; height:auto; display:block; }
+.war-text{ display:flex; flex-direction:column; gap:.42in; }
+.sections4{ display:grid; grid-template-columns:1fr 1fr; gap:.5in .62in; }
+.ldata{ display:grid; grid-template-columns:1.05fr 1fr; gap:.5in; align-items:stretch; }
+.tab{ display:inline-block; background:var(--olive-tab); color:var(--sand); font-family:'Saira Stencil One',sans-serif; font-size:16px; letter-spacing:.16em; padding:.08in .2in; margin-bottom:.14in; }
+.plate{ background:var(--olive); color:var(--paper); padding:.34in .42in .38in; position:relative; border:3px solid var(--olive-tab); }
+.rivet{ position:absolute; width:13px; height:13px; border-radius:50%; background:var(--sand); border:2px solid var(--olive-tab); }
+.rivet.tl{ top:.13in; left:.13in;} .rivet.tr{ top:.13in; right:.13in;} .rivet.bl{ bottom:.13in; left:.13in;} .rivet.br{ bottom:.13in; right:.13in;}
+.plate .label{ font-family:'Saira Stencil One',sans-serif; font-size:18px; letter-spacing:.16em; color:#E7C7A0; margin-bottom:.2in; display:block; text-align:center; }
+.facts{ display:grid; grid-template-columns:1fr 1fr; gap:.16in .42in; }
+.facts .f{ border-top:2px solid #7E7C5F; padding-top:.09in; }
+.facts .k{ font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:#D2B084; font-weight:700; }
+.facts .v{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:25px; line-height:1.05; }
+.facts .v small{ font-family:'Source Sans 3'; font-weight:600; font-size:16px; }
+.know{ background:var(--paper2); border:3px solid var(--ink); padding:.28in .36in .3in; }
+.know .tab{ background:var(--orange); color:#fff; }
+.know ul{ list-style:none; display:flex; flex-direction:column; gap:.14in; }
+.know li{ font-size:19.5px; line-height:1.26; padding-left:.38in; position:relative; }
+.know li::before{ content:"\2605"; position:absolute; left:0; top:0; color:var(--orange); font-size:19px; }
+/* RIGHT */
+.rail{ padding:.55in .85in .5in .7in; display:flex; flex-direction:column; gap:.26in; }
+.frame{ background:var(--ink); border:5px solid var(--ink); position:relative; overflow:hidden; }
+.frame img{ display:block; width:100%; object-fit:cover; }
+.cap{ background:var(--ink); color:var(--paper); font-size:15px; font-weight:600; line-height:1.2; padding:.1in .15in .12in; }
+.pair{ display:grid; grid-template-columns:1fr 1fr; gap:.26in; }
+.pair .frame img{ object-fit:contain; height:4.4in; background:var(--ink); }
+.arch-grid{ display:flex; gap:.28in; align-items:flex-start; justify-content:space-between; }
+.arch-grid .frame{ background:var(--paper2); }
+.arch-grid .frame img{ height:3.2in; width:auto; display:block; background:var(--paper2); }
+.arch-grid .cap{ font-size:13px; padding:.07in .1in .09in; }
+.feat-imgs{ display:grid; grid-template-columns:1fr 1fr; gap:.26in; }
+.feat-imgs .frame img{ height:2.5in; }
+.feat-imgs .contain img{ object-fit:contain; background:var(--paper2); padding:.08in; }
+.mine{ margin-top:auto; }
+.mine .frame{ border-color:var(--navy); border-width:6px; }
+.mine img{ height:4.1in; object-fit:cover; object-position:center; }
+.mine .plateblk{ background:var(--navy); color:var(--paper); padding:.28in .42in .32in; }
+.mine .tag{ font-family:'Saira Stencil One',sans-serif; font-size:18px; letter-spacing:.14em; color:#9FB6D6; }
+.mine .hook{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:40px; line-height:.98; text-transform:uppercase; margin:.06in 0 .1in; }
+.mine .plateblk p{ font-size:19.5px; line-height:1.3; color:#E7DEC9; }
+.mine .plateblk p b{ color:#fff; }
+/* TIMELINE */
+.timeline{ grid-column:1 / -1; background:var(--ink); color:var(--paper); padding:.36in .85in .5in 1.05in; }
+.timeline .tl-head{ font-family:'Saira Stencil One',sans-serif; font-size:19px; letter-spacing:.2em; color:#E7C7A0; margin-bottom:.26in; }
+.track{ position:relative; display:grid; grid-template-columns:repeat(9,1fr); }
+.track::before{ content:""; position:absolute; left:0; right:0; top:9px; height:4px; background:var(--orange); }
+.node{ position:relative; padding-right:.3in; }
+.node .dot{ width:20px; height:20px; border-radius:50%; background:var(--paper); border:4px solid var(--orange); position:relative; z-index:2; }
+.node.now .dot{ background:var(--orange); border-color:var(--paper); }
+.node .yr{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:32px; line-height:1; margin-top:.1in; color:#fff; }
+.node.now .yr{ color:var(--orange); }
+.node .ev{ font-size:16.5px; line-height:1.2; color:#CFC6AF; margin-top:.04in; max-width:3.2in; }
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="spine"></div>
+  <div class="gutter"></div>
+  <div class="masthead">
+    <div class="mh-left">
+      <div class="eyebrow">DODGE &middot; FOUR-WHEEL DRIVE &middot; SINCE 1946</div>
+      <h1>POWER <span class="b">WAGON</span></h1>
+      <div class="sub">The army truck the boys wrote home about. Brought back for the farm, and still working eighty years later.</div>
+    </div>
+    <div class="qr-card">
+      <div class="qr-txt">
+        <div class="k">WANT THE WHOLE STORY?</div>
+        <div class="big">Scan to read</div>
+        <div class="sm">the full history on your phone</div>
+      </div>
+      <img src="../img/qr.png" alt="Scan for the full story">
+    </div>
+  </div>
+  <div class="story">
+    <div class="war-open">
+      <figure class="frame warphoto">
+        <img src="../img/wc_wartime.jpeg" alt="Dodge WC command car in wartime">
+        <div class="cap">A Dodge WC command car pressing through a shattered town. The wartime truck that earned the legend, and the ancestor of every Power Wagon.</div>
+      </figure>
+      <div class="war-text">
+        <div class="sec"><span class="num">01</span><h2>Born in War</h2><p>When America went to war, Dodge stopped building for civilians and turned out the WC series of light military trucks. The three-quarter-ton weapons carrier earned a reputation as the truck that would go anywhere and never quit.</p></div>
+        <div class="sec"><span class="num">02</span><h2>The Boys Wrote Home</h2><p>Many of those soldiers were farm boys. They came home wanting the truck that had carried them through the war and wrote to Dodge asking where a civilian could buy one. Dodge answered.</p></div>
+      </div>
+    </div>
+    <div class="sections4">
+      <div class="sec"><span class="num">03</span><h2>The First 4&times;4 You Could Buy</h2><p>In 1946 Dodge put the proven military running gear under a civilian cab and called it the Power Wagon. It was the first four-wheel-drive truck an ordinary buyer could drive off a dealer lot from a major manufacturer.</p></div>
+      <div class="sec"><span class="num">04</span><h2>A Power Plant on Wheels</h2><p>Dodge sold it as a truck, a tractor, and a portable power plant in one. With power take-off at the front, center, and rear, it could run a well rig, a saw, a generator, or a pump anywhere you could drive it.</p></div>
+      <div class="sec"><span class="num">05</span><h2>It Wouldn't Retire</h2><p>American sales ended in 1968, but the trucks lived on. Armies and farmers ran them for decades, from rural France to the Philippines, and Israel kept building its own version into the 1980s.</p></div>
+      <div class="sec"><span class="num">06</span><h2>The Name Comes Back</h2><p>Ram revived the Power Wagon in 2005 as the factory off-road 2500 and marked its 75th anniversary in 2021. The idea held from 1946: serious capability built in at the factory, not bolted on later.</p></div>
+    </div>
+    <div class="pullquote"><p>Sold not as a truck, but as a <b>power plant you could drive</b> straight to the work.</p></div>
+    <div class="ldata">
+      <div class="plate">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <span class="label">FAST FACTS</span>
+        <div class="facts">
+          <div class="f"><div class="k">Introduced</div><div class="v">1946 <small>WDX</small></div></div>
+          <div class="f"><div class="k">Engine</div><div class="v">230 cu in six <small>~94 hp</small></div></div>
+          <div class="f"><div class="k">Drive</div><div class="v">First civilian 4&times;4</div></div>
+          <div class="f"><div class="k">US Production</div><div class="v">1946 &ndash; 1968</div></div>
+          <div class="f"><div class="k">Export Build</div><div class="v">into 1978</div></div>
+          <div class="f"><div class="k">Power Take-Off</div><div class="v">front · ctr · rear</div></div>
+        </div>
+      </div>
+      <div class="know">
+        <span class="tab">DID YOU KNOW</span>
+        <ul>
+          <li>The Philippine army ran its wartime Dodges into the 1980s, and Israel built its own into the same decade.</li>
+          <li>The crew cab began as coachbuilt trucks for rail and utility crews, before any factory offered one.</li>
+          <li>It was the first mass-produced 4&times;4 from a major automaker. Earlier four-wheel-drive trucks were military or aftermarket conversions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="rail">
+    <div class="pair">
+      <figure class="frame"><img src="../img/field_dog.jpeg" alt="Power Wagon discing a field"><div class="cap">Discing a field with a hound riding shotgun. Truck, tractor, and power plant in one.</div></figure>
+      <figure class="frame"><img src="../img/service_body.jpeg" alt="Power Wagon utility body"><div class="cap">Bodied up for utility crews. A platform as much as a truck.</div></figure>
+    </div>
+    <div>
+      <span class="tab">FROM THE ARCHIVE</span>
+      <div class="arch-grid">
+        <figure class="frame"><img src="../img/boys_wrote_home.jpeg" alt="wartime brochure"><div class="cap">Redesigned for peacetime.</div></figure>
+        <figure class="frame"><img src="../img/farm_brochure.jpeg" alt="power for farms brochure"><div class="cap">Power for farms.</div></figure>
+        <figure class="frame"><img src="../img/dealer_flyer.jpeg" alt="dealer flyer"><div class="cap">"The 4&times;4 that&#39;s different."</div></figure>
+        <figure class="frame"><img src="../img/americas_greatest.jpeg" alt="Power Wagon ad"><div class="cap">"America&#39;s greatest farm truck."</div></figure>
+      </div>
+    </div>
+    <div class="mine">
+      <figure class="frame"><img src="../img/my_truck.jpeg" alt="My Power Wagon build"></figure>
+      <div class="plateblk">
+        <span class="tag">AND THIS ONE IS MINE</span>
+        <div class="hook">Is it old or new? Yes.</div>
+        <p>A flat-fender Power Wagon body on a <b>2022 Ram Power Wagon</b> chassis with the <b>6.4 Hemi V8</b>. Built over two and a half years by <b>Tilsdale Coachworks</b> of Winslow, Indiana, finished by <b>Desert Power Wagon</b> in North Carolina.</p>
+      </div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="tl-head">EIGHTY YEARS OF SERVICE</div>
+    <div class="track">
+      <div class="node"><div class="dot"></div><div class="yr">1940</div><div class="ev">WC series goes to war</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">1946</div><div class="ev">Power Wagon reaches the public</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">1957</div><div class="ev">Crew cabs enter the catalog</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">1968</div><div class="ev">US civilian sales end</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">1978</div><div class="ev">Last export builds</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">1980s</div><div class="ev">Still serving worldwide</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">2005</div><div class="ev">The name returns on the Ram</div></div>
+      <div class="node"><div class="dot"></div><div class="yr">2021</div><div class="ev">75th anniversary edition</div></div>
+      <div class="node now"><div class="dot"></div><div class="yr">NOW</div><div class="ev">This truck, carrying the story</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
