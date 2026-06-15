@@ -1,8 +1,8 @@
 # Power Wagon — History Project
 
-Materials for a car-show display about the Dodge Power Wagon: a large-format **display board**,
-a **web story** (this repo's GitHub Pages site), and a printable **handout**. Everything here is
-source-editable so it can evolve over time.
+Materials for a car-show display about the Dodge Power Wagon: two large-format **display boards**
+(a history board and a build/spec board for the truck), a **web story** (this repo's GitHub Pages
+site), and a printable **handout**. Everything here is source-editable so it can evolve over time.
 
 **Live site:** https://rmhrisk.github.io/powerwagon
 
@@ -23,7 +23,8 @@ source-editable so it can evolve over time.
 │   ├── my_truck.jpeg           # The owner's build
 │   └── qr.png                  # QR -> the live site (regenerate with scripts/make_qr.py)
 ├── board/
-│   └── history_board.html      # 36x24 display board layout (references ../img/).
+│   ├── history_board.html      # 36x24 history display board (references ../img/).
+│   └── build_board.html        # 36x24 build/spec display board (references ../img/).
 ├── content/
 │   └── power-wagon-story.md    # Master long-form text (reference; fuller than the web story).
 ├── scripts/
@@ -34,6 +35,8 @@ source-editable so it can evolve over time.
 └── dist/                       # Generated artifacts (regenerable; committed for convenience)
     ├── PowerWagon_History_Board_36x24.pdf
     ├── PowerWagon_History_Board_preview.png
+    ├── PowerWagon_Build_Board_36x24.pdf
+    ├── PowerWagon_Build_Board_preview.png
     └── PowerWagon_Story_Handout.pdf
 ```
 
@@ -42,7 +45,7 @@ source-editable so it can evolve over time.
 - **Web story text:** edit `index.html` directly, commit, push. Pages redeploys automatically.
 - **Swap a photo:** replace the file in `img/` (keep the same filename), commit, push.
   Both the web story and the board pick it up. Re-run the render scripts to refresh `dist/` PDFs.
-- **Board layout/text:** edit `board/history_board.html`, then `python scripts/render_board.py`.
+- **Board layout/text:** edit `board/history_board.html` or `board/build_board.html`, then `python scripts/render_board.py` (renders both).
 - **QR target changed:** edit the URL in `scripts/make_qr.py`, run it, then re-render the board.
 
 ## Building the PDFs locally
@@ -51,7 +54,7 @@ source-editable so it can evolve over time.
 python -m pip install -r scripts/requirements.txt
 python -m playwright install chromium
 python scripts/make_qr.py            # optional, only if the URL changed
-python scripts/render_board.py       # -> dist/PowerWagon_History_Board_36x24.pdf (+ preview)
+python scripts/render_board.py       # -> dist/ history + build board PDFs (+ previews)
 python scripts/render_handout.py     # -> dist/PowerWagon_Story_Handout.pdf
 ```
 

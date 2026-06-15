@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Saira+Stencil+One&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+:root{
+  --paper:#ECE3CD; --paper2:#E1D5B8; --orange:#BF4F1B; --orange-deep:#8F360E;
+  --olive:#4C4B37; --olive-tab:#3D3C2C; --ink:#1B1712; --navy:#1A2A44; --sand:#D8C9A6;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+@page{ size:36in 24in; margin:0; }
+html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body{ font-family:'Source Sans 3',sans-serif; color:var(--ink); }
+.board{ width:36in; height:24in; background:var(--paper); position:relative; display:grid;
+  grid-template-columns:18.8in 17.2in; grid-template-rows:3.6in 1fr 2.55in; overflow:hidden; }
+.spine{ position:absolute; left:0; top:0; bottom:0; width:.28in; background:var(--orange); z-index:5; }
+.gutter{ position:absolute; top:3.6in; bottom:2.55in; left:18.8in; width:0; border-left:1px dashed #B7AC8E; }
+
+/* MASTHEAD */
+.masthead{ grid-column:1 / -1; display:grid; grid-template-columns:1fr 4.2in; align-items:center;
+  padding:.55in .85in 0 1.05in; border-bottom:7px solid var(--ink); position:relative; }
+.masthead::after{ content:""; position:absolute; left:1.05in; right:.85in; bottom:-.16in; height:3px; background:var(--orange); }
+.eyebrow{ font-family:'Saira Stencil One',sans-serif; color:var(--orange-deep); font-size:22px; letter-spacing:.22em; line-height:1; margin-bottom:.12in; }
+.mh-left h1{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:212px; line-height:.78; letter-spacing:-.01em; text-transform:uppercase; }
+.mh-left h1 .b{ color:var(--orange); }
+.mh-left .buildid{ font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:46px; line-height:1; letter-spacing:.01em; color:var(--navy); text-transform:uppercase; margin-top:.12in; }
+.mh-left .sub{ font-size:30px; font-weight:600; color:var(--olive); margin-top:.22in; }
+.qr-card{ justify-self:end; display:grid; grid-template-columns:auto 1.45in; align-items:center; gap:.2in; background:var(--ink); padding:.24in .28in; }
+.qr-card img{ width:1.45in; height:1.45in; display:block; background:#fff; padding:.06in; order:2; }
+.qr-card .qr-txt{ order:1; text-align:right; }
+.qr-card .qr-txt .k{ font-family:'Saira Stencil One',sans-serif; color:var(--orange); font-size:14px; letter-spacing:.1em; line-height:1.3; }
+.qr-card .qr-txt .big{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; color:var(--paper); font-size:30px; line-height:.95; text-transform:uppercase; margin-top:.06in; }
+.qr-card .qr-txt .sm{ color:var(--sand); font-size:14px; margin-top:.07in; }
+
+/* LEFT: concept + hero + stats */
+.left{ padding:.55in .8in .5in 1.05in; display:flex; flex-direction:column; justify-content:space-between; }
+.concept .key{ font-family:'Saira Stencil One',sans-serif; font-size:17px; color:var(--orange-deep); letter-spacing:.12em; }
+.concept h2{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:54px; line-height:.95; text-transform:uppercase; color:var(--navy); margin:.06in 0 .12in; }
+.concept p{ font-size:26px; line-height:1.4; max-width:16.5in; }
+.hero{ margin:.42in 0; background:var(--ink); border:6px solid var(--ink); position:relative; overflow:hidden; }
+.hero img{ display:block; width:100%; height:8.4in; object-fit:cover; object-position:center; }
+.hero .cap{ position:absolute; left:0; right:0; bottom:0; background:var(--ink); color:var(--sand); font-size:17px; font-weight:600; padding:.13in .22in; }
+.statement{ border-top:4px solid var(--orange); padding-top:.24in; margin:.36in 0 .1in; }
+.statement p{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:54px; line-height:1; text-transform:uppercase; color:var(--navy); }
+.statement p b{ color:var(--orange); }
+.stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:.0; border-top:4px solid var(--ink); }
+.stat{ padding:.26in .1in .1in; border-right:2px solid #C9BD9E; }
+.stat:last-child{ border-right:0; }
+.stat .v{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:70px; line-height:.85; color:var(--orange); }
+.stat .v small{ font-size:33px; }
+.stat .l{ font-size:18px; letter-spacing:.05em; text-transform:uppercase; color:var(--olive); font-weight:700; margin-top:.1in; }
+
+/* RIGHT: spec plates */
+.right{ padding:.55in .85in .5in .7in; display:flex; flex-direction:column; justify-content:space-between; }
+.plate{ background:var(--olive); color:var(--paper); padding:.38in .5in .42in; position:relative; border:3px solid var(--olive-tab); }
+.rivet{ position:absolute; width:13px; height:13px; border-radius:50%; background:var(--sand); border:2px solid var(--olive-tab); }
+.rivet.tl{ top:.13in; left:.13in;} .rivet.tr{ top:.13in; right:.13in;} .rivet.bl{ bottom:.13in; left:.13in;} .rivet.br{ bottom:.13in; right:.13in;}
+.plate .label{ font-family:'Saira Stencil One',sans-serif; font-size:22px; letter-spacing:.13em; color:#E7C7A0; margin-bottom:.24in; display:block; }
+.row{ display:grid; grid-template-columns:2.45in 1fr; gap:.1in .32in; padding:.15in 0; border-top:2px solid #6E6C50; }
+.row:first-of-type{ border-top:0; padding-top:0; }
+.row .k{ font-size:17px; letter-spacing:.07em; text-transform:uppercase; color:#D2B084; font-weight:700; padding-top:.03in; }
+.row .v{ font-size:23px; line-height:1.3; }
+.row .v b{ color:#fff; }
+
+/* CREDITS band */
+.credits{ grid-column:1 / -1; background:var(--ink); color:var(--paper); padding:.4in .85in .4in 1.05in; display:flex; flex-direction:column; justify-content:center; gap:.26in; }
+.credits .line{ display:flex; align-items:baseline; gap:.3in; }
+.credits .lab{ font-family:'Saira Stencil One',sans-serif; font-size:20px; letter-spacing:.13em; color:#E7C7A0; white-space:nowrap; min-width:3.1in; }
+.credits .names{ font-size:24px; line-height:1.32; }
+.credits .names b{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:28px; text-transform:uppercase; letter-spacing:.01em; }
+.credits .sep{ color:var(--orange); font-weight:800; padding:0 .12in; }
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="spine"></div>
+  <div class="gutter"></div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="mh-left">
+      <div class="eyebrow">THE BUILD &middot; NAUTICAL BLUE METALLIC</div>
+      <h1>POWER <span class="b">WAGON</span></h1>
+      <div class="sub">A 2022 Ram 2500 Power Wagon, reimagined as a 1940s flat-fender on the modern chassis and drivetrain.</div>
+    </div>
+    <div class="qr-card">
+      <div class="qr-txt">
+        <div class="k">FULL BUILD WRITE-UP</div>
+        <div class="big">Scan to read</div>
+        <div class="sm">scan to read the details</div>
+      </div>
+      <img src="../img/qr_method.png" alt="Scan for the Method feature">
+    </div>
+  </div>
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="concept">
+      <div class="key">THE CONCEPT</div>
+      <h2>1940s Body, 2022 Capability</h2>
+      <p>This build starts with a 2022 Ram 2500 Power Wagon Crew Cab and reimagines it as a 1940s flat-fender Power Wagon, while keeping the modern Ram chassis, drivetrain, and four-wheel-drive capability underneath. It looks like the truck the GIs brought home and drives like a current heavy-duty 4&times;4.</p>
+    </div>
+    <figure class="hero">
+      <img src="../img/my_truck.jpeg" alt="The finished Power Wagon build">
+      <div class="cap">Custom flat-fender body by Tilsdale Coachworks, widened to a four-door crew cab, in Nautical Blue Metallic.</div>
+    </figure>
+    <div class="statement"><p>Two and a half years. <b>Tens of thousands of hours.</b></p></div>
+    <div class="stats">
+      <div class="stat"><div class="v">410<small> HP</small></div><div class="l">6.4L HEMI V8</div></div>
+      <div class="stat"><div class="v">429<small> LB-FT</small></div><div class="l">at 4,000 rpm</div></div>
+      <div class="stat"><div class="v">40<small>-IN</small></div><div class="l">Maxxis Razr MT</div></div>
+      <div class="stat"><div class="v">8<small>-SPD</small></div><div class="l">ZF automatic</div></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: spec plates -->
+  <div class="right">
+    <div class="plate">
+      <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+      <span class="label">POWERTRAIN &amp; FOUR-WHEEL DRIVE</span>
+      <div class="row"><div class="k">Engine</div><div class="v"><b>6.4L HEMI V8</b></div></div>
+      <div class="row"><div class="k">Output</div><div class="v">410 hp @ 5,600 rpm &middot; 429 lb-ft @ 4,000 rpm</div></div>
+      <div class="row"><div class="k">Transmission</div><div class="v">ZF 8HP75 eight-speed automatic</div></div>
+      <div class="row"><div class="k">4WD hardware</div><div class="v">Factory winch, electronic front &amp; rear lockers, electronic sway-bar disconnect</div></div>
+    </div>
+
+    <div class="plate">
+      <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+      <span class="label">CHASSIS</span>
+      <div class="row"><div class="k">Suspension</div><div class="v">Carli Suspension HEMI Power Wagon Pintop custom kit &middot; King 2.5&Prime; remote-reservoir shocks</div></div>
+      <div class="row"><div class="k">Rear air-assist</div><div class="v">Logiq Ram 2500 system &mdash; 2CH remote, air tank, HD2 compressor, rear airbags</div></div>
+      <div class="row"><div class="k">Brakes</div><div class="v">Wilwood six-piston front &amp; rear &middot; TX6R calipers, 16&Prime; rotors</div></div>
+      <div class="row"><div class="k">Steering</div><div class="v">PSC Big Bore XD hydraulic box with ram assist &middot; Apex HD linkage</div></div>
+      <div class="row"><div class="k">Wheels &amp; tires</div><div class="v"><b>Method 709-HD</b> 20&times;9, 8&times;6.5, +12, Matte Black &middot; Maxxis Razr MT 40&times;13.5R20 &middot; ProMaxx black lugs</div></div>
+    </div>
+
+    <div class="plate">
+      <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+      <span class="label">BODY &amp; INTERIOR</span>
+      <div class="row"><div class="k">Body</div><div class="v">Custom 1940s flat-fender Power Wagon by <b>Tilsdale Coachworks</b>, stretched &amp; widened to a four-door crew cab</div></div>
+      <div class="row"><div class="k">Paint</div><div class="v">Nautical Blue Metallic</div></div>
+      <div class="row"><div class="k">Interior</div><div class="v">BMW Golden Brown leather, custom by Desert Power Wagons</div></div>
+      <div class="row"><div class="k">Tech &amp; comfort</div><div class="v">Factory 12&Prime; Uconnect &middot; Rockford Fosgate audio &middot; AMP Research power steps</div></div>
+    </div>
+  </div>
+
+  <!-- CREDITS -->
+  <div class="credits">
+    <div class="line"><span class="lab">BUILT BY</span><span class="names"><b>Tilsdale Coachworks</b> <span style="color:#CFC6AF">flat-fender coachwork</span> <span class="sep">/</span> <b>Desert Power Wagons</b> <span style="color:#CFC6AF">body, paint, interior &amp; finish</span></span></div>
+    <div class="line"><span class="lab">COMPONENTS</span><span class="names">Carli Suspension <span class="sep">&middot;</span> King Shocks <span class="sep">&middot;</span> Logiq Suspension <span class="sep">&middot;</span> Wilwood <span class="sep">&middot;</span> PSC Motorsports <span class="sep">&middot;</span> Apex <span class="sep">&middot;</span> Maxxis <span class="sep">&middot;</span> Rockford Fosgate <span class="sep">&middot;</span> AMP Research <span class="sep">&middot;</span> ProMaxx Automotive</span></div>
+  </div>
+</div>
+</body>
+</html>
