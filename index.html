@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Wagon — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Saira+Stencil+One&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ECE3CD; --paper2:#E4D8BC; --orange:#BF4F1B; --orange-deep:#8F360E;
+  --olive:#4C4B37; --olive-tab:#3D3C2C; --ink:#1B1712; --navy:#1A2A44; --sand:#D8C9A6;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{ font-family:'Source Sans 3',sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.6; -webkit-font-smoothing:antialiased; }
+.wrap{ max-width:760px; margin:0 auto; padding:0 20px 80px; }
+
+/* hero */
+header{ background:var(--ink); color:var(--paper); border-bottom:6px solid var(--orange); }
+.hero-inner{ max-width:760px; margin:0 auto; padding:34px 20px 0; }
+.eyebrow{ font-family:'Saira Stencil One',sans-serif; color:var(--orange); font-size:14px;
+  letter-spacing:.22em; }
+h1{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; text-transform:uppercase;
+  line-height:.82; letter-spacing:-.01em; font-size:clamp(64px,17vw,140px); margin:6px 0 0; }
+h1 .b{ color:var(--orange); }
+.dek{ font-size:clamp(18px,4.6vw,23px); font-weight:600; color:var(--sand); margin:14px 0 26px; }
+.hero-img{ width:100%; display:block; }
+.hero-img img{ width:100%; display:block; }
+.hero-cap{ background:var(--ink); color:var(--sand); font-size:13px; padding:8px 20px 26px;
+  max-width:760px; margin:0 auto; }
+
+/* body */
+section{ padding-top:30px; }
+.kicker{ font-family:'Saira Stencil One',sans-serif; color:var(--orange-deep);
+  font-size:13px; letter-spacing:.16em; }
+h2{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; text-transform:uppercase;
+  color:var(--navy); font-size:clamp(30px,7vw,44px); line-height:.98; margin:4px 0 14px;
+  border-bottom:3px solid var(--ink); padding-bottom:10px; }
+p{ font-size:18px; margin:0 0 16px; }
+p.lead{ font-size:20px; }
+
+figure{ margin:26px 0; border:5px solid var(--ink); background:var(--ink); }
+figure img{ width:100%; display:block; }
+figure.contain{ background:var(--paper2); }
+figure.contain img{ padding:10px; background:var(--paper2); }
+figcaption{ background:var(--ink); color:var(--paper); font-size:13.5px; font-weight:600;
+  padding:9px 12px; }
+
+blockquote{ margin:30px 0; border-top:4px solid var(--orange); padding-top:16px; }
+blockquote p{ font-family:'Big Shoulders Display',sans-serif; font-weight:700; text-transform:uppercase;
+  color:var(--navy); font-size:clamp(26px,6vw,38px); line-height:1.02; }
+blockquote p b{ color:var(--orange); }
+
+.mine{ margin-top:46px; background:var(--navy); color:var(--paper); border:none; }
+.mine img{ width:100%; display:block; }
+.mine .body{ padding:22px 22px 26px; }
+.mine .tag{ font-family:'Saira Stencil One',sans-serif; font-size:14px; letter-spacing:.14em; color:#9FB6D6; }
+.mine h2{ color:#fff; border-color:#3A4D6E; }
+.mine p{ color:#E7DEC9; }
+.mine p b{ color:#fff; }
+
+
+/* ===== BOARD KIT COMPONENTS (web scale) =====================
+   These mirror board/boardkit.css so the site and the printed
+   boards read as one family. Same tokens, same motifs. */
+.stats-row{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px 20px; margin:30px 0; }
+@media(min-width:620px){ .stats-row{ grid-template-columns:repeat(4,1fr); } }
+.stat{ border-left:5px solid var(--orange); padding-left:14px; }
+.stat .v{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; color:var(--orange);
+  font-size:clamp(42px,10vw,60px); line-height:.8; }
+.stat .v small{ font-size:.42em; }
+.stat .l{ font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--olive);
+  font-weight:700; margin-top:7px; }
+
+.factstrip{ background:var(--olive); color:var(--paper); display:grid;
+  grid-template-columns:repeat(2,1fr); gap:14px 22px; padding:20px 22px; margin:32px 0; }
+@media(min-width:620px){ .factstrip{ grid-template-columns:repeat(3,1fr); } }
+.factstrip .f{ display:flex; flex-direction:column; border-left:3px solid #6E6C50; padding-left:12px; }
+.factstrip .f .k{ color:#D2B084; text-transform:uppercase; font-size:11px; letter-spacing:.06em; font-weight:700; }
+.factstrip .f .v{ font-size:17px; font-weight:600; margin-top:2px; }
+
+.timeline{ background:var(--ink); color:var(--paper); padding:24px 22px 26px; margin:38px 0; }
+.timeline .th{ font-family:'Saira Stencil One',sans-serif; font-size:13px; letter-spacing:.16em;
+  color:#E7C7A0; margin-bottom:18px; }
+.track{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px 18px; }
+@media(min-width:620px){ .track{ grid-template-columns:repeat(3,1fr); } }
+.node{ border-top:2px solid var(--orange); padding-top:10px; }
+.node .yr{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:26px; line-height:.9; }
+.node:last-child .yr{ color:var(--orange); }
+.node .ev{ font-size:12.5px; line-height:1.25; color:#D9CFB6; margin-top:4px; }
+
+.plates{ display:grid; gap:18px; margin:30px 0; }
+@media(min-width:760px){ .plates{ grid-template-columns:repeat(3,1fr); } }
+.bplate{ background:var(--olive); color:var(--paper); padding:20px 20px 22px; }
+.bplate .label{ font-family:'Saira Stencil One',sans-serif; font-size:13px; letter-spacing:.12em;
+  color:#E7C7A0; display:block; margin-bottom:14px; }
+.brow{ padding:11px 0; border-top:1.5px solid #6E6C50; }
+.brow:first-of-type{ border-top:0; padding-top:0; }
+.brow .k{ font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:#D2B084; font-weight:700; margin-bottom:3px; }
+.brow .v{ font-size:15px; line-height:1.32; margin:0; }
+.brow .v b{ color:#fff; }
+
+.credits{ background:var(--ink); color:var(--paper); padding:24px 22px; margin:34px 0 0; }
+.credits .line{ margin-bottom:14px; }
+.credits .line:last-child{ margin-bottom:0; }
+.credits .lab{ display:block; font-family:'Saira Stencil One',sans-serif; font-size:12px;
+  letter-spacing:.14em; color:#E7C7A0; margin-bottom:6px; }
+.credits .names{ font-size:15px; line-height:1.45; }
+.credits .names b{ font-family:'Big Shoulders Display',sans-serif; font-weight:800;
+  font-size:17px; text-transform:uppercase; }
+.credits .sep{ color:var(--orange); padding:0 4px; }
+.statement{ border-left:5px solid var(--orange); padding-left:16px; margin:30px 0; }
+.statement p{ font-family:'Big Shoulders Display',sans-serif; font-weight:800; text-transform:uppercase;
+  color:var(--navy); font-size:clamp(22px,5.4vw,32px); line-height:1.02; margin:0; }
+.statement p b{ color:var(--orange); }
+
+/* archive contact sheet — the site is the expansion, so it shows the whole source set */
+.archive{ margin:34px 0 0; }
+.arcgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+@media(min-width:620px){ .arcgrid{ grid-template-columns:repeat(3,1fr); } }
+@media(min-width:860px){ .arcgrid{ grid-template-columns:repeat(4,1fr); } }
+.arcgrid figure{ margin:0; border:3px solid var(--ink); background:var(--ink); display:flex; flex-direction:column; }
+.arcgrid figure.br{ background:var(--paper2); }
+.arcgrid img{ width:100%; height:150px; object-fit:cover; display:block; }
+.arcgrid figure.br img{ object-fit:contain; background:var(--paper2); padding:5px; }
+.arcgrid figcaption{ background:var(--ink); color:var(--sand); font-size:10.5px; font-weight:600;
+  padding:6px 7px; line-height:1.25; margin-top:auto; }
+
+footer{ text-align:center; padding:40px 20px; color:var(--olive); font-size:14px; }
+footer .stencil{ font-family:'Saira Stencil One',sans-serif; letter-spacing:.14em; color:var(--orange-deep); }
+
+@media print{
+  @page{ size:Letter; margin:0; }
+  html,body{ background:var(--paper); -webkit-print-color-adjust:exact; print-color-adjust:exact; font-size:12px; }
+  .wrap{ max-width:none; padding:0; }
+
+  /* COVER (dark hero) + first section share page 1 */
+  header{ border-bottom:8px solid var(--orange); }
+  .hero-inner{ max-width:none; padding:.5in .6in 0; }
+  h1{ font-size:84px; }
+  .dek{ font-size:16px; margin:12px 0 18px; }
+  .hero-img img{ max-height:3.9in; object-fit:cover; width:100%; }
+  .hero-cap{ max-width:none; padding:9px .6in .34in; font-size:10.5px; }
+
+  section{ break-before:page; padding:.55in .65in .4in; }
+  section:first-of-type{ break-before:auto; padding-top:.4in; }
+  .kicker{ font-size:11px; }
+  h2{ font-size:30px; margin:4px 0 10px; padding-bottom:7px; break-after:avoid; }
+  p{ font-size:12px; margin:0 0 10px; }
+  p.lead{ font-size:13px; }
+  figure{ float:right; width:3in; margin:4px 0 14px 20px; break-inside:avoid; }
+  figure img{ max-height:2.7in; object-fit:cover; }
+  figcaption{ font-size:9.5px; padding:6px 8px; }
+  blockquote{ clear:both; margin:16px 0; break-inside:avoid; }
+  blockquote p{ font-size:23px; }
+
+  /* CLOSING page: full-bleed navy */
+  .mine{ break-before:page; break-inside:avoid; margin:0; }
+  .mine img{ width:100%; max-height:4in; object-fit:cover; }
+  .mine .body{ padding:.3in .65in .4in; }
+  .mine h2{ font-size:30px; }
+  footer{ break-before:avoid; padding:.34in; }
+
+  .factstrip,.timeline,.bplate,.credits,.statement,.stats-row{ break-inside:avoid; }
+  .plates{ grid-template-columns:repeat(3,1fr); }
+  .track{ grid-template-columns:repeat(3,1fr); }
+  .stats-row{ grid-template-columns:repeat(4,1fr); }
+  .arcgrid{ grid-template-columns:repeat(4,1fr); gap:10px; }
+  .arcgrid figure{ break-inside:avoid; float:none; width:auto; margin:0; }
+  .arcgrid img{ height:1.25in; }
+  .arcgrid figcaption{ font-size:7px; padding:3px 4px; }
+  .archive{ break-before:page; }
+
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hero-inner">
+    <div class="eyebrow">DODGE &middot; FOUR-WHEEL DRIVE &middot; SINCE 1946</div>
+    <h1>POWER <span class="b">WAGON</span></h1>
+    <div class="dek">The army truck the boys wrote home about. Brought back for the farm, and still working eighty years later.</div>
+  </div>
+  <div class="hero-img"><img src="img/field_dog.jpeg" alt=""></div>
+  <div class="hero-cap">A Power Wagon discing a field with a hound riding shotgun. Dodge sold it as a truck, a tractor, and a portable power plant in one.</div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="kicker">01 — BORN IN WARTIME</div>
+  <h2>Born in War</h2>
+  <p class="lead">When the United States entered the Second World War, Dodge did what nearly every American manufacturer did. It stopped building for civilians and turned its lines over to the war effort. The result was the WC series, a family of light military trucks that would go on to define what a go-anywhere vehicle could be.</p>
+  <p>The WCs came in many forms. There were half-ton and three-quarter-ton models, open cabs with collapsible windshields and canvas tops, and closed steel cabs. There were cargo trucks, radio trucks, command cars, and the WC-54 ambulance with its big metal body and red cross. Dodge built well over a quarter million of them. They served in North Africa, across Europe, and throughout the Pacific.</p>
+  <p>What set the WC apart was not speed or comfort. It was grunt and dependability. The three-quarter-ton weapons carrier in particular earned a reputation as the truck that simply would not quit. It went where it was pointed, hauled what was loaded, and got its crew home. Soldiers trusted it in a way they trusted few pieces of equipment. Many of those soldiers were farm boys, and they did not forget.</p>
+  <figure><img src="img/wc_wartime.jpeg" alt="Dodge WC command car in wartime"><figcaption>A Dodge WC command car during the war &mdash; the ancestor of every Power Wagon, and the truck the GIs would not forget.</figcaption></figure>
+</section>
+
+<section>
+  <div class="kicker">02 — THE LETTERS HOME</div>
+  <h2>The Boys Wrote Home</h2>
+  <p>When the war ended and the servicemen came home, a lot of them went back to the land. They returned to farms and ranches that ran on tractors and worn-out prewar trucks, and they remembered the machine that had carried them through the worst conditions imaginable. They wanted that truck. Some bought up military surplus units the moment they hit the market. Others wrote directly to Dodge asking where a civilian could buy something like the truck they had used overseas.</p>
+  <figure class="contain"><img src="img/boys_wrote_home.jpeg" alt=""><figcaption>Dodge&#39;s own pitch: "The army truck the boys wrote home about, now redesigned for peacetime use."</figcaption></figure>
+  <p>Dodge listened. The company was already swamped with demand for the durability, four-wheel drive, and high capacity the wartime trucks had proven. Rather than design a civilian truck from scratch, Dodge engineers did what they called parts-room engineering. They took the proven three-quarter-ton chassis, drivetrain, and transfer case and adapted what already existed. Nearly every component evolved from something that had already survived the war.</p>
+</section>
+
+<section>
+  <div class="kicker">03 — THE TRUCK ARRIVES</div>
+  <h2>The First 4&times;4 You Could Buy</h2>
+  <p>The truck that emerged went on sale in early 1946 as the WDX, and the world came to know it as the Power Wagon. It paired the military running gear with a closed civilian cab borrowed from Dodge&#39;s commercial truck line, a cab whose basic design dated back to 1939. That gave a farmer something the open military WC never offered, which was a weatherproof place to sit while doing a full day of brutal work.</p>
+  <p>Under the hood sat the 230 cubic inch flathead inline-six, a long-stroke motor that made its torque down low where it mattered. It produced modest horsepower but enormous pulling power, with peak torque arriving at around 1,600 rpm. Behind it ran a four-speed manual and a two-speed transfer case with a granny-low first gear. Dodge bumped the rating up from the military three-quarter-ton to a full one ton and bolted on an eight-foot bed.</p>
+  <figure class="contain"><img src="img/arch_farm_cover.jpg" alt="Power for the Farm brochure cover"><figcaption>&ldquo;Power for the Farm.&rdquo; The amazing new four-wheel drive &mdash; sold as truck, tractor, and power plant in one.</figcaption></figure>
+  <figure class="contain"><img src="img/dealer_flyer.jpeg" alt=""><figcaption>"The 4-Wheel-Drive Truck that&#39;s different." Dodge sold capability no rival could match off the lot.</figcaption></figure>
+  <figure class="contain"><img src="img/americas_greatest.jpeg" alt="Dodge advertisement: America's greatest farm truck"><figcaption>Dodge sold it as &ldquo;America&#39;s greatest farm truck&rdquo; &mdash; capability off the dealer lot, no conversion required.</figcaption></figure>
+  <p>The Power Wagon is often called the first factory four-wheel-drive truck, and in a specific sense it was. There had been four-wheel-drive trucks before it, but they were either purely military or aftermarket conversions, like the Fords that Marmon-Herrington had been converting since the 1930s. What the Power Wagon did first was put four-wheel drive into a complete, mass-produced truck that an ordinary civilian could walk into a dealership and buy off the lot from a major manufacturer.</p>
+
+  <div class="factstrip">
+    <div class="f"><span class="k">Introduced</span><span class="v">1946 WDX</span></div>
+    <div class="f"><span class="k">Engine</span><span class="v">230 cu in six</span></div>
+    <div class="f"><span class="k">Power</span><span class="v">~94 hp</span></div>
+    <div class="f"><span class="k">Drive</span><span class="v">First civilian 4&times;4</span></div>
+    <div class="f"><span class="k">US Build</span><span class="v">1946&ndash;1968</span></div>
+    <div class="f"><span class="k">Power take-off</span><span class="v">front &middot; ctr &middot; rear</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">04 — A MACHINE THAT RAN MACHINES</div>
+  <h2>A Power Plant on Wheels</h2>
+  <p>The genius of the Power Wagon was not really the four-wheel drive. It was the power take-off. Dodge marketed the truck less as a vehicle and more as a self-propelled power plant, and that framing is exactly why it sold.</p>
+  <figure class="contain"><img src="img/arch_powerplant.jpg" alt="Job-Rated Power Plant brochure page"><figcaption>&ldquo;Profit from the power and economy of this Job-Rated power plant.&rdquo; The 230 flathead six was built for continuous, grueling work.</figcaption></figure>
+  <figure class="contain"><img src="img/farm_brochure.jpeg" alt=""><figcaption>"Power for farms." A finger-tip hydraulic lift ran three-point implements with drawbar pull greater than the average three-plow tractor.</figcaption></figure>
+  <p>A buyer could spec power take-off at the front, the center, and the rear, along with a governor that held the engine at a steady speed under load. That turned the truck into a mobile engine that could drive almost anything. It ran winches, well-drilling rigs, buzz saws, generators, water pumps, feed grinders, and hammer mills. For a farmer or rancher working miles from the barn with no electricity in sight, the truck was the stationary engine. You drove your power source out to the work instead of dragging the work back to the power.</p>
+  <figure><img src="img/work_auger.jpg" alt="post-hole auger driven off the truck"><figcaption>Power take-off ran a post-hole auger straight off the truck &mdash; no separate engine required.</figcaption></figure>
+  <figure><img src="img/work_disc_dog.jpg" alt="Power Wagon pulling a disc harrow with a dog in the bed"><figcaption>Pulling a disc harrow, with a farm dog riding in the bed. The truck did the tractor&#39;s work and then drove home on the road.</figcaption></figure>
+  <blockquote><p>It was not one tool. It was the thing that ran <b>all the other tools</b>, anywhere you could drive it.</p></blockquote>
+</section>
+
+<section>
+  <div class="kicker">05 — ROOM FOR THE CREW</div>
+  <h2>The First Crew Cabs</h2>
+  <p>The Power Wagon&#39;s reputation as a platform led to another idea that the rest of the industry would not catch up to for years. Companies whose work took whole crews far from any road needed a way to carry the men along with the tools.</p>
+  <figure><img src="img/service_body.jpeg" alt=""><figcaption>Bodied up for a utility fleet. Coachbuilders turned rugged work trucks into crew and gear haulers long before the factories did.</figcaption></figure>
+  <p>Utility, timber, and railroad companies were the natural customers. Railroad work especially often happened miles down the tracks with no road leading to the spot, and a repair gang of four to six men had to get there together. The standard single-row cab could not do it. So these companies went to coachbuilders, the same kind of custom body shops that built limousines and hearses, and had them graft second rows of seating and extra doors onto rugged work trucks. There are crew-cab Power Wagons from the 1940s built for railroads out west, years before anything the factories offered.</p>
+  <figure class="contain"><img src="img/arch_utilities.jpg" alt="Just right for public utilities brochure page"><figcaption>&ldquo;Just right for public utilities.&rdquo; Pole-setting, drilling, welding, and hoisting rigs all ran off the one truck &mdash; it went where other trucks couldn&rsquo;t.</figcaption></figure>
+  <figure class="contain"><img src="img/arch_snowplows.jpg" alt="Dodge brochure page showing three types of highway plow"><figcaption>One frame attachment, three highway plows. Towns and counties bought the Power Wagon to keep the roads open through winter.</figcaption></figure>
+  <p>The manufacturers eventually noticed. International Harvester offered the first factory crew cab in 1957, and Dodge followed in 1963. But those early crew cabs stayed work tools that sold poorly to ordinary buyers. The shift to selling extra cab room to retail customers came from Dodge, which introduced the Club Cab in 1973, the first extended cab pickup from any American manufacturer. Dodge did not invent the multi-row truck, but it brought the idea to everyday buyers, and today the crew cab is the most common pickup body style on the road.</p>
+</section>
+
+<section>
+  <div class="kicker">06 — IT WOULDN&#39;T RETIRE</div>
+  <h2>The Truck That Refused to Die</h2>
+  <p>American sales ran from 1946 right through 1968, the flat-fender barely changing in spirit the whole time. What finally killed it at home was not a better truck. It was emissions regulation the old flathead six could not meet. But that was only the end of the American chapter.</p>
+  <figure><img src="img/work_plowing.jpg" alt="Power Wagon plowing a field"><figcaption>Breaking ground on four-wheel drive &mdash; decades into a working life the flat-fender simply refused to end.</figcaption></figure>
+  <p>The vehicles were so simple, so rugged, and so repairable that armies and operators kept them running for decades. The Philippine Commonwealth Army held onto its three-quarter-ton WCs into the 1980s. The Free French Forces ran theirs through the 1950s and 60s in Indochina, Suez, and Algeria. Surplus units scattered across Greece, Norway, Portugal, Israel, Iran, and beyond. To this day you can meet someone who grew up in rural France and saw a wartime Dodge in person, because so many were left behind and put to work.</p>
+  <p>They were also rebuilt and repurposed, nowhere more than in the Philippines, where abandoned American military vehicles were given second, third, and fourth lives. The jeepney, still running today, began as surplus Willys jeeps lengthened and bodied into an entire indigenous transport industry. Dodge weapons carriers got the same treatment.</p>
+</section>
+
+<section>
+  <div class="kicker">07 — BUILT FAR FROM HOME</div>
+  <h2>Made Abroad for Decades</h2>
+  <p>The Power Wagon was manufactured well beyond American shores, and its overseas production outlasted Detroit&#39;s by a wide margin. Dodge kept exporting the flat-fender until around 1977 and 1978. Beyond export, several countries built it under license. Premier Automobiles in India built Dodge and Fargo trucks in collaboration with Chrysler. Barreiros built Dodge trucks in Spain. Mowag in Switzerland built fire engines on the Power Wagon chassis from 1955. Argentina assembled them into the early 1970s.</p>
+  <p>The clearest example of the truck refusing to stop is Israel, where the Power Wagon and its relatives were produced locally and the homegrown version nicknamed the Nun-Nun was built in Nazareth into the 1980s before being developed into a more modern vehicle called the Abir. That puts Israeli production nearly two decades past the end of US civilian sales.</p>
+</section>
+
+<section>
+  <div class="kicker">08 — THE NAME COMES BACK</div>
+  <h2>1946&#39;s Idea, Reborn</h2>
+  <p>When the Ram name took over Dodge&#39;s pickups for 1981, Power Wagon disappeared as a model and lay dormant for more than two decades. Then in 2005 the name returned as a serious off-road version of the heavy-duty Ram 2500, and the badge meant something specific again.</p>
+  <p>What carried over was the philosophy. The modern Power Wagon comes off the line with the hardware an off-roader would otherwise bolt on themselves: a two-inch factory lift over a normal 2500, front and rear locking differentials, an electronically disconnecting front sway bar, a factory 12,000-pound winch, low 4.10 gearing, and underbody skid plates, all behind a 410-horsepower 6.4-liter Hemi V8. The trade-off is deliberate. It is gas-only and carries lower payload and tow ratings than a standard 2500, because capability comes first. That is the same bargain the 1946 truck offered.</p>
+  <p>In 2021 the truck reached a milestone almost no nameplate survives to see, seventy-five years since the original, marked by the Power Wagon 75th Anniversary Edition and unveiled around Veterans Day in a nod to its wartime roots. Same mechanicals, with commemorative badging, beadlock-capable wheels on 33-inch tires, and a Mountain Brown leather interior. By then the original flat-fenders had become genuine collectibles, with show-quality restorations running well into six figures, the very trucks GIs once bought cheap off the surplus lot.</p>
+  <blockquote><p>From rural France to Luzon to Nazareth, the Power Wagon became a <b>physical artifact of America&#39;s wartime footprint</b>, and it held its place by simply continuing to work.</p></blockquote>
+</section>
+
+
+<div class="timeline">
+  <div class="th">EIGHTY YEARS OF SERVICE</div>
+  <div class="track">
+    <div class="node"><div class="yr">1940</div><div class="ev">WC series goes to war</div></div>
+    <div class="node"><div class="yr">1946</div><div class="ev">Power Wagon reaches the public</div></div>
+    <div class="node"><div class="yr">1957</div><div class="ev">Crew cabs enter the catalog</div></div>
+    <div class="node"><div class="yr">1968</div><div class="ev">US civilian sales end</div></div>
+    <div class="node"><div class="yr">1978</div><div class="ev">Last export builds</div></div>
+    <div class="node"><div class="yr">1980s</div><div class="ev">Still serving worldwide</div></div>
+    <div class="node"><div class="yr">2005</div><div class="ev">The name returns on the Ram</div></div>
+    <div class="node"><div class="yr">2021</div><div class="ev">75th anniversary edition</div></div>
+    <div class="node"><div class="yr">NOW</div><div class="ev">This truck, carrying the story</div></div>
+  </div>
+</div>
+</div>
+
+<div class="wrap">
+  <div class="mine">
+    <img src="img/my_truck.jpeg" alt="">
+    <div class="body">
+      <div class="tag">AND THIS ONE IS MINE</div>
+      <h2>Is it old or new? Yes.</h2>
+      <p>The truck you&#39;re looking at is the whole story in one vehicle: a flat-fender Power Wagon body, the war-hero shape, in a crew cab, riding on a <b>2022 Ram Power Wagon</b> chassis with the <b>6.4 Hemi V8</b>.</p>
+      <p>It was built over two and a half years and tens of thousands of hours. A custom body grafted onto a capable chassis by a coach shop, the same way those original crew cabs were made eighty years ago.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="wrap">
+<section>
+  <div class="kicker">THE BUILD &mdash; NAUTICAL BLUE METALLIC</div>
+  <h2>1940s Body, 2022 Capability</h2>
+  <p class="lead">A 2022 Ram 2500 Power Wagon Crew Cab, reimagined as a 1940s flat-fender Power Wagon while keeping the modern Ram chassis, drivetrain, and four-wheel-drive capability underneath. It looks like the truck the GIs brought home and drives like a current heavy-duty 4&times;4.</p>
+
+  <div class="stats-row">
+    <div class="stat"><div class="v">410<small> HP</small></div><div class="l">6.4L HEMI V8</div></div>
+    <div class="stat"><div class="v">429<small> LB-FT</small></div><div class="l">at 4,000 rpm</div></div>
+    <div class="stat"><div class="v">40<small>-IN</small></div><div class="l">Maxxis Razr MT</div></div>
+    <div class="stat"><div class="v">8<small>-SPD</small></div><div class="l">ZF automatic</div></div>
+  </div>
+
+  <div class="statement"><p>Two and a half years. <b>Tens of thousands of hours.</b></p></div>
+
+  <p>The boards next to the truck carry the summary. Here is the full specification.</p>
+
+  <div class="plates">
+    <div class="bplate">
+      <span class="label">POWERTRAIN &amp; 4WD</span>
+      <div class="brow"><div class="k">Donor platform</div><div class="v">2022 Ram 2500 Power Wagon Crew Cab</div></div>
+      <div class="brow"><div class="k">Engine</div><div class="v"><b>6.4L HEMI V8</b></div></div>
+      <div class="brow"><div class="k">Output</div><div class="v">410 hp @ 5,600 rpm &middot; 429 lb-ft @ 4,000 rpm</div></div>
+      <div class="brow"><div class="k">Transmission</div><div class="v">ZF 8HP75 eight-speed automatic</div></div>
+      <div class="brow"><div class="k">Four-wheel drive</div><div class="v">Retains the factory winch, electronic front and rear lockers, and electronic sway-bar disconnect</div></div>
+    </div>
+    <div class="bplate">
+      <span class="label">CHASSIS</span>
+      <div class="brow"><div class="k">Suspension</div><div class="v">Carli Suspension HEMI Power Wagon Pintop custom kit with <b>King 2.5&Prime; remote-reservoir shocks</b></div></div>
+      <div class="brow"><div class="k">Rear air-assist</div><div class="v">Logiq Suspension Ram 2500 system &mdash; 2CH remote, air tank, HD2 compressor system, and Ram 2500 rear airbags</div></div>
+      <div class="brow"><div class="k">Brakes</div><div class="v">Wilwood 16&Prime; six-piston kits front and rear &mdash; <b>TX6R six-piston calipers</b>, 16&Prime; rotors</div></div>
+      <div class="brow"><div class="k">Steering</div><div class="v">PSC Big Bore XD hydraulic steering box with ram assist &middot; Apex HD steering linkage</div></div>
+      <div class="brow"><div class="k">Wheels &amp; tires</div><div class="v"><b>Method 709-HD</b> &mdash; 20&times;9, 8&times;6.5 bolt pattern, +12 offset, Matte Black &middot; Maxxis Razr MT 40&times;13.5R20 &middot; ProMaxx Automotive 189LF-K8-B black lug nuts</div></div>
+    </div>
+    <div class="bplate">
+      <span class="label">BODY &amp; INTERIOR</span>
+      <div class="brow"><div class="k">Body</div><div class="v">Custom 1940s-style flat-fender Power Wagon body by <b>Tisdale Coachworks</b>, stretched and widened into a four-door crew cab</div></div>
+      <div class="brow"><div class="k">Paint</div><div class="v">Nautical Blue Metallic</div></div>
+      <div class="brow"><div class="k">Interior</div><div class="v">BMW Golden Brown leather, custom interior by <b>Desert Power Wagons</b></div></div>
+      <div class="brow"><div class="k">Tech &amp; comfort</div><div class="v">Factory 12&Prime; Uconnect touchscreen &middot; Rockford Fosgate audio &middot; AMP Research power steps</div></div>
+    </div>
+  </div>
+
+  <div class="credits">
+    <div class="line"><span class="lab">BUILT BY</span><span class="names"><b>Tisdale Coachworks</b> flat-fender coachwork <span class="sep">/</span> <b>Desert Power Wagons</b> body, paint, interior &amp; finish</span></div>
+    <div class="line"><span class="lab">COMPONENTS</span><span class="names">Carli Suspension <span class="sep">&middot;</span> King Shocks <span class="sep">&middot;</span> Logiq Suspension <span class="sep">&middot;</span> Wilwood <span class="sep">&middot;</span> PSC Motorsports <span class="sep">&middot;</span> Apex <span class="sep">&middot;</span> Maxxis <span class="sep">&middot;</span> Rockford Fosgate <span class="sep">&middot;</span> AMP Research <span class="sep">&middot;</span> ProMaxx Automotive</span></div>
+  </div>
+  <p style="font-size:14px;color:var(--olive);margin-top:14px;">The wheels were supplied by Method Race Wheels, who published a feature on the build. Method is a component supplier here, not a builder.</p>
+</section>
+</div>
+
+
+<div class="wrap">
+<section class="archive">
+  <div class="kicker">SOURCE MATERIAL</div>
+  <h2>From the Archive</h2>
+  <p>The period photographs and Dodge sales literature this story was built from. The boards beside the truck can only show a handful; here is the rest.</p>
+  <div class="arcgrid">
+    <figure class="br"><img src="img/arch_army_cover.jpg" alt="brochure cover"><figcaption>&ldquo;The army truck the boys wrote home about &mdash; now redesigned for peacetime use.&rdquo;</figcaption></figure>
+    <figure class="br"><img src="img/arch_farm_cover.jpg" alt="brochure cover"><figcaption>&ldquo;Power for the Farm.&rdquo; Truck, tractor, and power plant in one.</figcaption></figure>
+    <figure class="br"><img src="img/arch_powerplant.jpg" alt="engine brochure page"><figcaption>The &ldquo;Job-Rated&rdquo; L-head six, built for continuous, grueling work.</figcaption></figure>
+    <figure class="br"><img src="img/arch_utilities.jpg" alt="utilities brochure page"><figcaption>&ldquo;Just right for public utilities &mdash; goes where other trucks can&rsquo;t go.&rdquo;</figcaption></figure>
+    <figure class="br"><img src="img/arch_snowplows.jpg" alt="snow plow brochure page"><figcaption>One frame attachment, three highway plows.</figcaption></figure>
+    <figure class="br"><img src="img/farm_brochure.jpeg" alt="farm brochure"><figcaption>A finger-tip hydraulic lift ran three-point implements.</figcaption></figure>
+    <figure class="br"><img src="img/dealer_flyer.jpeg" alt="dealer flyer"><figcaption>&ldquo;The 4-Wheel-Drive Truck that&rsquo;s different.&rdquo;</figcaption></figure>
+    <figure class="br"><img src="img/americas_greatest.jpeg" alt="advertisement"><figcaption>&ldquo;America&rsquo;s greatest farm truck.&rdquo;</figcaption></figure>
+    <figure><img src="img/wc_wartime.jpeg" alt="WC command car"><figcaption>A Dodge WC command car in a shattered town.</figcaption></figure>
+    <figure><img src="img/work_plowing.jpg" alt="plowing"><figcaption>Breaking ground on four-wheel drive.</figcaption></figure>
+    <figure><img src="img/work_auger.jpg" alt="post-hole auger"><figcaption>Power take-off running a post-hole auger.</figcaption></figure>
+    <figure><img src="img/work_disc_dog.jpg" alt="disc harrow with dog"><figcaption>Disc harrow, with a farm dog riding in the bed.</figcaption></figure>
+    <figure><img src="img/work_discing_road.jpg" alt="discing beside a road"><figcaption>Working the ground beside a country road.</figcaption></figure>
+    <figure><img src="img/work_discing_field.jpg" alt="discing a field"><figcaption>Discing a field &mdash; the truck as tractor.</figcaption></figure>
+    <figure><img src="img/field_dog.jpeg" alt="discing with a hound"><figcaption>A hound riding shotgun through the afternoon&rsquo;s work.</figcaption></figure>
+    <figure><img src="img/service_body.jpeg" alt="utility service body"><figcaption>Bodied up for a utility fleet, years before factory crew cabs.</figcaption></figure>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="stencil">EIGHTY YEARS OF SERVICE &middot; 1946 — TODAY</div>
+</footer>
+</body>
+</html>

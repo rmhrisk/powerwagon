@@ -1,0 +1,133 @@
+/* ============================================================
+   POWER WAGON — BOARD KIT
+   The shared design system for every display board.
+
+   Canonical source: the printed 36x38 combined panel. These values
+   ARE the printed artifact's values — do not "improve" them without
+   re-rendering and diffing all three boards.
+
+   All boards are 36in wide, so this type scale is physical and
+   identical across them. A 36x24 board is simply a masthead plus one
+   zone of the combined panel.
+
+   RULES
+   - Flat solid fills only. Gradients/transparency caused a pink/salmon
+     misrender in the PDF pipeline. Do not reintroduce them.
+   - Photos run at natural aspect. No object-fit:cover on the truck or
+     the wartime photo.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Saira+Stencil+One&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root{
+  --paper:#ECE3CD; --paper2:#E1D5B8;
+  --orange:#BF4F1B; --orange-deep:#8F360E;
+  --olive:#4C4B37;  --olive-tab:#3D3C2C;
+  --ink:#1B1712;    --navy:#1A2A44;   --sand:#D8C9A6;
+  --plate-rule:#6E6C50; --plate-key:#D2B084; --plate-label:#E7C7A0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:'Source Sans 3',sans-serif;color:var(--ink);}
+
+/* --- board shell -------------------------------------------------- */
+.spine{position:absolute;left:0;top:0;bottom:0;width:.28in;background:var(--orange);z-index:5;}
+.zone{position:relative;overflow:hidden;}
+
+/* --- masthead ----------------------------------------------------- */
+.masthead{display:grid;grid-template-columns:1fr 3.9in;align-items:center;padding:.45in .8in 0 1.05in;border-bottom:7px solid var(--ink);position:relative;}
+.masthead::after{content:"";position:absolute;left:1.05in;right:.8in;bottom:-.15in;height:3px;background:var(--orange);}
+.eyebrow{font-family:'Saira Stencil One',sans-serif;color:var(--orange-deep);font-size:21px;letter-spacing:.2em;margin-bottom:.1in;}
+.mh h1{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:150px;line-height:.76;text-transform:uppercase;}
+.mh h1 .b{color:var(--orange);}
+.mh .sub{font-size:28px;font-weight:600;color:var(--olive);margin-top:.12in;}
+
+.qr-card{justify-self:end;display:grid;grid-template-columns:auto 1.3in;align-items:center;gap:.18in;background:var(--ink);padding:.22in .24in;}
+.qr-card img{width:1.3in;height:1.3in;background:#fff;padding:.05in;order:2;}
+.qr-card .qr-txt{order:1;text-align:right;}
+.qr-card .qr-txt .k{font-family:'Saira Stencil One',sans-serif;color:var(--orange);font-size:13px;letter-spacing:.08em;}
+.qr-card .qr-txt .big{font-family:'Big Shoulders Display',sans-serif;font-weight:800;color:var(--paper);font-size:27px;line-height:.95;text-transform:uppercase;margin-top:.05in;}
+.qr-card .qr-txt .sm{color:var(--sand);font-size:12px;margin-top:.05in;}
+
+/* --- section label ------------------------------------------------ */
+.zlabel{font-family:'Saira Stencil One',sans-serif;font-size:27px;letter-spacing:.15em;color:var(--orange-deep);padding-bottom:.15in;margin-bottom:.24in;border-bottom:3px solid var(--ink);}
+.zlabel .r{color:var(--olive);}
+
+/* --- photo frame -------------------------------------------------- */
+.frame{background:var(--ink);border:5px solid var(--ink);position:relative;overflow:hidden;}
+.frame img{display:block;width:100%;}
+.frame .cap{position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:var(--sand);font-size:15px;font-weight:600;padding:.08in .12in;}
+
+/* --- numbered story block ----------------------------------------- */
+.sec .num{font-family:'Saira Stencil One',sans-serif;font-size:18px;color:var(--orange);letter-spacing:.12em;}
+.sec h3{font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:46px;line-height:.95;text-transform:uppercase;margin:.05in 0 .1in;}
+.sec p{font-size:35px;line-height:1.4;}
+
+/* --- history hero row --------------------------------------------- */
+.hhero{display:grid;grid-template-columns:auto 1fr auto;gap:.55in;align-items:center;margin-bottom:.4in;}
+.hhero .warframe img{height:4.9in;width:auto;display:block;}
+.hhero .coverfig{border:4px solid var(--ink);}
+.hhero .coverfig img{height:4.9in;width:auto;display:block;background:var(--paper2);}
+.hherotext{display:flex;flex-direction:column;justify-content:center;gap:.6in;}
+
+/* --- big uncropped gallery ---------------------------------------- */
+.gallery{display:flex;justify-content:space-between;align-items:flex-end;gap:.4in;margin-bottom:.36in;}
+.gallery figure{margin:0;display:flex;flex-direction:column;}
+.gallery img{height:6.5in;width:auto;display:block;border:4px solid var(--ink);}
+.gallery .br img{background:var(--paper2);}
+.gallery .gcap{font-size:18px;color:#4b4636;padding-top:.09in;line-height:1.25;max-width:11in;}
+
+/* --- horizontal fact strip ---------------------------------------- */
+.factstrip{background:var(--olive);color:var(--paper);display:grid;grid-template-columns:repeat(6,1fr);gap:.1in .4in;padding:.22in .44in;margin-bottom:.36in;}
+.factstrip .f{display:flex;flex-direction:column;border-left:3px solid var(--plate-rule);padding-left:.22in;}
+.factstrip .f .k{color:var(--plate-key);text-transform:uppercase;font-size:15px;letter-spacing:.05em;font-weight:700;}
+.factstrip .f .v{font-size:25px;font-weight:600;margin-top:.03in;}
+
+/* --- timeline ------------------------------------------------------ */
+.timeline{background:var(--ink);color:var(--paper);padding:.28in .55in .32in;}
+.timeline .th{font-family:'Saira Stencil One',sans-serif;font-size:23px;letter-spacing:.16em;color:var(--plate-label);margin-bottom:.2in;}
+.track{display:grid;grid-template-columns:repeat(9,1fr);position:relative;}
+.track::before{content:"";position:absolute;left:0;right:0;top:.1in;height:2px;background:var(--orange);}
+.node{position:relative;padding-right:.15in;}
+.node .dot{width:13px;height:13px;border-radius:50%;background:var(--orange);position:relative;z-index:2;margin-bottom:.12in;}
+.node .yr{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:34px;line-height:.9;}
+.node:last-child .yr{color:var(--orange);}
+.node .ev{font-size:17px;line-height:1.18;color:#D9CFB6;margin-top:.04in;max-width:3in;}
+
+/* --- build concept -------------------------------------------------- */
+.bconcept{margin-bottom:0;}
+.bconcept .k{font-family:'Saira Stencil One',sans-serif;font-size:17px;color:var(--orange-deep);letter-spacing:.1em;}
+.bconcept h3{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:40px;line-height:.94;text-transform:uppercase;color:var(--navy);margin:.05in 0 .1in;}
+.bconcept p{font-size:33px;line-height:1.42;}
+
+/* --- build hero + stats -------------------------------------------- */
+.bhero{border:5px solid var(--ink);overflow:hidden;}
+.bhero img{display:block;width:100%;height:auto;}
+.bhero .cap{background:var(--ink);color:var(--sand);font-size:16px;font-weight:600;padding:.1in .16in;}
+.bstatswrap{display:flex;flex-direction:column;justify-content:space-between;height:100%;gap:.4in;}
+.bstats{display:grid;grid-template-columns:1fr 1fr;gap:.3in .5in;flex:1;}
+.stat{border-left:5px solid var(--orange);padding:.1in 0 .1in .34in;display:flex;flex-direction:column;justify-content:center;}
+.stat .v{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:118px;line-height:.78;color:var(--orange);}
+.stat .v small{font-size:44px;}
+.stat .l{font-size:25px;text-transform:uppercase;letter-spacing:.04em;color:var(--olive);font-weight:700;margin-top:.1in;}
+.statement{border-left:5px solid var(--orange);padding-left:.26in;}
+.statement p{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:38px;line-height:1;text-transform:uppercase;color:var(--navy);}
+.statement p b{color:var(--orange);}
+
+/* --- riveted data plates -------------------------------------------- */
+.specs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.4in;margin-bottom:.28in;}
+.bplate{background:var(--olive);color:var(--paper);padding:.34in .4in;position:relative;display:flex;flex-direction:column;justify-content:center;}
+.bplate .label{font-family:'Saira Stencil One',sans-serif;font-size:24px;letter-spacing:.11em;color:var(--plate-label);display:block;margin-bottom:.22in;}
+.brow{padding:.2in 0;border-top:1.5px solid var(--plate-rule);}
+.brow:first-of-type{border-top:0;padding-top:0;}
+.brow .k{font-size:19px;text-transform:uppercase;letter-spacing:.05em;color:var(--plate-key);font-weight:700;margin-bottom:.06in;}
+.brow .v{font-size:30px;line-height:1.34;}
+.brow .v b{color:#fff;}
+
+/* --- credits band ---------------------------------------------------- */
+.credits{background:var(--ink);color:var(--paper);padding:.3in .55in;margin-top:auto;display:flex;flex-direction:column;gap:.18in;}
+.credits .line{display:flex;gap:.3in;align-items:baseline;}
+.credits .lab{font-family:'Saira Stencil One',sans-serif;font-size:21px;letter-spacing:.12em;color:var(--plate-label);min-width:2.7in;}
+.credits .names{font-size:24px;}
+.credits .names b{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:27px;text-transform:uppercase;}
+.credits .sep{color:var(--orange);padding:0 .06in;}
